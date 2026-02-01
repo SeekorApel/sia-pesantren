@@ -11,7 +11,17 @@ class KelasQuranController extends Controller
      */
     public function index()
     {
-        //
+        $kelasQuran = collect();
+
+        for ($i = 1; $i <= 100; $i++) {
+            $kelasQuran->push((object) [
+                'id' => $i,
+                'tingkat_kelas' => "Tingkat_Kelas - $i",
+                'pengurus' => "Pengurus - $i",
+                'nama' => "nama - $i",
+            ]);
+        }
+        return view('pages.master.kelasQuran.index', compact('kelasQuran'));
     }
 
     /**
@@ -19,7 +29,7 @@ class KelasQuranController extends Controller
      */
     public function create()
     {
-        //
+        return view('pages.master.kelasQuran.create');
     }
 
     /**
@@ -43,7 +53,7 @@ class KelasQuranController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        return view('pages.master.kelasQuran.edit');
     }
 
     /**

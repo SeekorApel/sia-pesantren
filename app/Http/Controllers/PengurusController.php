@@ -13,7 +13,7 @@ class PengurusController extends Controller
     {
         $pengurus = collect();
 
-        for ($i = 1; $i <= 200; $i++) {
+        for ($i = 1; $i <= 100; $i++) {
             $pengurus->push((object) [
                 'id' => $i,
                 'nama_lengkap' => "Pengurus $i",
@@ -28,7 +28,7 @@ class PengurusController extends Controller
      */
     public function create()
     {
-        //
+        return view('pages.master.pengurus.create');
     }
 
     /**
@@ -52,7 +52,7 @@ class PengurusController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        return view('pages.master.pengurus.edit');
     }
 
     /**

@@ -22,6 +22,9 @@
     <link rel="stylesheet" type="text/css" href="/assets/vendors/css/dataTables.bs5.min.css">
     <link rel="stylesheet" type="text/css" href="/assets/vendors/css/vendors.min.css" />
     <link rel="stylesheet" type="text/css" href="/assets/vendors/css/daterangepicker.min.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/vendors/css/select2.min.css">
+    <link rel="stylesheet" type="text/css" href="/assets/vendors/css/select2-theme.min.css">
+    <link rel="stylesheet" type="text/css" href="/assets/vendors/css/sweetalert2.min.js">
     <!--! END: Vendors CSS-->
     <!--! BEGIN: Custom CSS-->
     <link rel="stylesheet" type="text/css" href="/assets/css/theme.min.css" />
@@ -166,7 +169,8 @@
                         </a>
                         <ul class="nxl-submenu">
                             <li class="nxl-item"><a class="nxl-link" href="{{ route('master.pengurus.index') }}">Pengurus</a></li>
-                            <li class="nxl-item"><a class="nxl-link" href="">Asrama</a></li>
+                            <li class="nxl-item"><a class="nxl-link" href="{{ route('master.asrama.index') }}">Asrama</a></li>
+                            <li class="nxl-item"><a class="nxl-link" href="{{ route('master.kamar.index') }}">Kamar</a></li>
                             <li class="nxl-item"><a class="nxl-link" href="">Tingkat kelas Qur'an</a></li>
                             <li class="nxl-item"><a class="nxl-link" href="">Kelas Qur'an</a></li>
                             <li class="nxl-item"><a class="nxl-link" href="">Tingkat Kelas kitab</a></li>
@@ -284,11 +288,16 @@
             <div class="page-header">
                 <div class="page-header-left d-flex align-items-center">
                     <div class="page-header-title">
-                        <h5 class="m-b-10">Dashboard</h5>
+                        <h5 class="m-b-10">
+                            @yield('page-title', 'Dashboard')
+                        </h5>
                     </div>
+
                     <ul class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                        <li class="breadcrumb-item">Dashboard</li>
+                        {{-- <li class="breadcrumb-item">
+                            <a href="/">Home</a>
+                        </li> --}}
+                        @yield('breadcrumb')
                     </ul>
                 </div>
             </div>
@@ -314,8 +323,12 @@
     <!--! BEGIN: Vendors JS !-->
     <script src="/assets/vendors/js/vendors.min.js"></script>
     <!-- vendors.min.js {always must need to be top} -->
+    <script src="/assets/vendors/js/jquery.min.js"></script>
     <script src="/assets/vendors/js/dataTables.min.js"></script>
     <script src="/assets/vendors/js/dataTables.bs5.min.js"></script>
+    <script src="/assets/vendors/js/select2.min.js"></script>
+    <script src="/assets/vendors/js/select2-active.min.js"></script>
+    <script src="/assets/vendors/js/sweetalert2.min.js"></script>
     {{-- <script src="/assets/vendors/js/daterangepicker.min.js"></script>
     <script src="/assets/vendors/js/apexcharts.min.js"></script>
     <script src="/assets/vendors/js/circle-progress.min.js"></script> --}}

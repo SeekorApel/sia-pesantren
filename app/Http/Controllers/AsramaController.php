@@ -11,7 +11,15 @@ class AsramaController extends Controller
      */
     public function index()
     {
-        //
+        $asrama = collect();
+
+        for ($i = 1; $i <= 100; $i++) {
+            $asrama->push((object) [
+                'id' => $i,
+                'nama' => "Nama $i",
+            ]);
+        }
+        return view('pages.master.asrama.index', compact('asrama'));
     }
 
     /**
@@ -19,7 +27,7 @@ class AsramaController extends Controller
      */
     public function create()
     {
-        //
+        return view('pages.master.asrama.create');
     }
 
     /**
@@ -43,7 +51,7 @@ class AsramaController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        return view('pages.master.asrama.edit');
     }
 
     /**

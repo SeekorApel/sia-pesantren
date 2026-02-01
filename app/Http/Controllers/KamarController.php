@@ -4,22 +4,25 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class TingkatKelasQuranController extends Controller
+class KamarController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $tingkatKelasQuran = collect();
+        $kamar = collect();
 
         for ($i = 1; $i <= 100; $i++) {
-            $tingkatKelasQuran->push((object) [
+            $kamar->push((object) [
                 'id' => $i,
-                'nama' => "Nama $i",
+                'nama_pengurus' => "Pengurus $i",
+                'nama_asrama' => "Asrama $i",
+                'nama_kamar' => "Kamar $i"
             ]);
         }
-        return view('pages.master.tingkatKelasQuran.index', compact('tingkatKelasQuran'));
+        return view('pages.master.kamar.index', compact('kamar'));
+        return view("pages.master.kamar.index");
     }
 
     /**
@@ -27,7 +30,20 @@ class TingkatKelasQuranController extends Controller
      */
     public function create()
     {
-        return view('pages.master.tingkatKelasQuran.create');
+        // data dummy / temporary
+        $pengurusList = [
+            ['id' => 1, 'nama' => 'Dicky Muzakki'],
+            ['id' => 2, 'nama' => 'Ahmad Fikri'],
+            ['id' => 3, 'nama' => 'Siti Aisyah'],
+        ];
+
+        $asramaList = [
+            ['id' => 101, 'nama' => 'Asrama Putra'],
+            ['id' => 102, 'nama' => 'Asrama Putri'],
+            ['id' => 103, 'nama' => 'Asrama Tahfidz'],
+        ];
+
+        return view('pages.master.kamar.create', compact('pengurusList', 'asramaList'));
     }
 
     /**
@@ -51,7 +67,7 @@ class TingkatKelasQuranController extends Controller
      */
     public function edit(string $id)
     {
-        return view('pages.master.tingkatKelasQuran.edit');
+        //
     }
 
     /**
