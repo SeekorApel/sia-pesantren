@@ -24,10 +24,11 @@
     <link rel="stylesheet" type="text/css" href="/assets/vendors/css/daterangepicker.min.css" />
     <link rel="stylesheet" type="text/css" href="/assets/vendors/css/select2.min.css">
     <link rel="stylesheet" type="text/css" href="/assets/vendors/css/select2-theme.min.css">
-    <link rel="stylesheet" type="text/css" href="/assets/vendors/css/sweetalert2.min.js">
+    <link rel="stylesheet" type="text/css" href="/assets/vendors/css/sweetalert2.min.css">
     <!--! END: Vendors CSS-->
     <!--! BEGIN: Custom CSS-->
     <link rel="stylesheet" type="text/css" href="/assets/css/theme.min.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/css/custom.css" />
     <!--! END: Custom CSS-->
     <!--! HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries !-->
     <!--! WARNING: Respond.js doesn"t work if you view the page via file: !-->
@@ -174,8 +175,8 @@
                             <li class="nxl-item"><a class="nxl-link" href="">Tingkat kelas Qur'an</a></li>
                             <li class="nxl-item"><a class="nxl-link" href="">Kelas Qur'an</a></li>
                             <li class="nxl-item"><a class="nxl-link" href="">Tingkat Kelas kitab</a></li>
-                            <li class="nxl-item"><a class="nxl-link" href="">Jenjang Pendidikan Madrasah</a></li>
-                            <li class="nxl-item"><a class="nxl-link" href="">Tingkat Kelas Madrasah</a></li>
+                            <li class="nxl-item"><a class="nxl-link" href="{{ route('jenjangPendidikan.index') }}">Jenjang Pendidikan Madrasah</a></li>
+                            <li class="nxl-item"><a class="nxl-link" href="{{ route('tingkatMadrasah.index') }}">Tingkat Kelas Madrasah</a></li>
                             <li class="nxl-item"><a class="nxl-link" href="">Kelas Madrasah</a></li>
                             <li class="nxl-item"><a class="nxl-link" href="">Tahun Ajaran</a></li>
                             <li class="nxl-item"><a class="nxl-link" href="">Pelajaran</a></li>
@@ -314,6 +315,9 @@
         </footer> --}}
         <!-- [ Footer ] end -->
     </main>
+
+    @yield('modal')
+
     <!--! ================================================================ !-->
     <!--! [End] Main Content !-->
     <!--! ================================================================ !-->
@@ -321,8 +325,8 @@
     <!--! Footer Script !-->
     <!--! ================================================================ !-->
     <!--! BEGIN: Vendors JS !-->
-    <script src="/assets/vendors/js/vendors.min.js"></script>
     <!-- vendors.min.js {always must need to be top} -->
+    <script src="/assets/vendors/js/vendors.min.js"></script>
     <script src="/assets/vendors/js/jquery.min.js"></script>
     <script src="/assets/vendors/js/dataTables.min.js"></script>
     <script src="/assets/vendors/js/dataTables.bs5.min.js"></script>
@@ -342,6 +346,30 @@
     <!--! END: Theme Customizer !-->
     <!-- Scripts -->
     @stack('scripts')
+
+    @if (session('success'))
+        <script type="text/javascript">
+            Swal.fire({
+                title: 'Berhasil',
+                text: '{{ session('success') }}',
+                icon: 'success',
+                confirmButtonColor: '#3085d6',
+                confirmButtonText: 'Tutup'
+            });
+        </script>
+    @endif
+    @if (session('error'))
+        <script type="text/javascript">
+            Swal.fire({
+                title: 'Error',
+                text: '{{ session('error') }}',
+                icon: 'error',
+                confirmButtonColor: '#3085d6',
+                confirmButtonText: 'Tutup'
+            });
+        </script>
+    @endif
+
 </body>
 
 </html>
