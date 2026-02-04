@@ -56,7 +56,7 @@
                     <div class="mb-3">
                         <label for="jenjang_pendidikan" class="form-label">Jenjang Pendidikan<span style="color:red">*</span></label>
                         <select type="text" class="form-control" id="jenjang_pendidikan" name="jenjang_pendidikan" required>
-                            <option value="" disabled selected>Pilih Jenjang Pendidikan Madrasah</option>
+                            <option value=""></option>
                             @foreach($jenjangs as $id => $nama)
                                 <option value="{{ $id }}">{{ $nama }}</option>
                             @endforeach
@@ -96,7 +96,6 @@
                     <div class="mb-3">
                         <label for="edit_jenjang_pendidikan" class="form-label">Jenjang Pendidikan<span style="color:red">*</span></label>
                         <select type="text" class="form-control" id="edit_jenjang_pendidikan" name="edit_jenjang_pendidikan" required>
-                            <option value="" disabled selected>Pilih Jenjang Pendidikan Madrasah</option>
                             @foreach($jenjangs as $id => $nama)
                                 <option value="{{ $id }}">{{ $nama }}</option>
                             @endforeach
@@ -122,13 +121,18 @@
 @push('scripts')
 <script>
     $('#addModal').on('shown.bs.modal', function () {
-        var selectElement = $('#jenjang_pendidikan');
-        
-        selectElement.select2('destroy');
-        selectElement.select2({
-            placeholder: "Pilih Jenjang Pendidikan",
-            allowClear: true,
-            width: '100%'
+        $('#jenjang_pendidikan').select2({
+            placeholder: 'Pilih...',
+            dropdownParent: $('#addModal'),
+            width: '100%' 
+        });
+    });
+    
+    $('#editModal').on('shown.bs.modal', function () {
+        $('#edit_jenjang_pendidikan').select2({
+            placeholder: 'Pilih...',
+            dropdownParent: $('#editModal'),
+            width: '100%' 
         });
     });
 
