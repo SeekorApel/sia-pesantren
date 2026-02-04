@@ -47,6 +47,21 @@ class TingkatKelasMadrasahController extends Controller
     
     public function store(Request $request)
     {
+        $validated = $request->validate(
+            [
+                'jenjang_pendidikan' => ['required', 'uuid'],
+                'nama' => ['required', 'string', 'max:255'],
+            ],
+            [
+                'jenjang_pendidikan.required' => 'Id jenjang pendidikan tidak ditemukan',
+                'jenjang_pendidikan.uuid' => 'Format id jenjang pendidikan tidak valid',
+                
+                'nama.required' => 'Tingkat kelas harus diisi',
+                'nama.string' => 'Tingkat kelas harus berupa teks',
+                'nama.max' => 'Panjang karakter tidak bisa melebihi 255',
+            ]
+        );
+
         try {
             \DB::beginTransaction();
 
@@ -72,6 +87,25 @@ class TingkatKelasMadrasahController extends Controller
 
     public function update(Request $request)
     {
+        $validated = $request->validate(
+            [
+                'edit_id' => ['required', 'uuid'],
+                'edit_jenjang_pendidikan' => ['required', 'uuid'],
+                'edit_nama' => ['required', 'string', 'max:255'],
+            ],
+            [
+                'edit_id.required' => 'Id tidak ditemukan',
+                'edit_id.uuid' => 'Format id tidak valid',
+                
+                'edit_jenjang_pendidikan.required' => 'Id jenjang pendidikan tidak ditemukan',
+                'edit_jenjang_pendidikan.uuid' => 'Format id jenjang pendidikan tidak valid',
+                
+                'edit_nama.required' => 'Tingkat kelas harus diisi',
+                'edit_nama.string' => 'Tingkat kelas harus berupa teks',
+                'edit_nama.max' => 'Panjang karakter tidak bisa melebihi 255',
+            ]
+        );
+
         try {
             \DB::beginTransaction();
 
@@ -99,6 +133,16 @@ class TingkatKelasMadrasahController extends Controller
 
     public function destroy(Request $request)
     {
+        $validated = $request->validate(
+            [
+                'id' => ['required', 'uuid'],
+            ],
+            [
+                'id.required' => 'Id tidak ditemukan',
+                'id.uuid' => 'Format id tidak valid',
+            ]
+        );
+
         $id = $request->input('id');
 
         if (!$id) {

@@ -42,6 +42,17 @@ class JenjangPendidikanMadrasahController extends Controller
     
     public function store(Request $request)
     {
+        $validated = $request->validate(
+            [
+                'nama' => ['required', 'string', 'max:255'],
+            ],
+            [
+                'nama.required' => 'Jenjang pendidikan harus diisi',
+                'nama.string' => 'Jenjang pendidikan harus berupa teks',
+                'nama.max' => 'Panjang karakter tidak bisa melebihi 255',
+            ]
+        );
+
         try {
             \DB::beginTransaction();
 
@@ -66,6 +77,21 @@ class JenjangPendidikanMadrasahController extends Controller
 
     public function update(Request $request)
     {
+        $validated = $request->validate(
+            [
+                'edit_id' => ['required', 'uuid'],
+                'edit_nama' => ['required', 'string', 'max:255'],
+            ],
+            [
+                'edit_id.required' => 'Id tidak ditemukan',
+                'edit_id.uuid' => 'Format id tidak valid',
+                
+                'edit_nama.required' => 'Jenjang pendidikan harus diisi',
+                'edit_nama.string' => 'Jenjang pendidikan harus berupa teks',
+                'edit_nama.max' => 'Panjang karakter tidak bisa melebihi 255',
+            ]
+        );
+
         try {
             \DB::beginTransaction();
 
@@ -92,6 +118,16 @@ class JenjangPendidikanMadrasahController extends Controller
 
     public function destroy(Request $request)
     {
+        $validated = $request->validate(
+            [
+                'id' => ['required', 'uuid'],
+            ],
+            [
+                'id.required' => 'Id tidak ditemukan',
+                'id.uuid' => 'Format id tidak valid',
+            ]
+        );
+
         $id = $request->input('id');
 
         if (!$id) {
